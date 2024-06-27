@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/random.css">
+</head>
+<body>
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container1">
+          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="/" class="nav-link px-2 link-body-emphasis">Home</a></li>
+              <li><a href="/gallery" class="nav-link px-2 link-body-emphasis">Gallery</a></li>
+              <li><a href="/random" class="nav-link px-2 link-secondary">Random Cat Generator</a></li>
+            </ul>
+    
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/gallery" method="GET" role="search">
+                <input type="search" name="query" class="form-control" placeholder="Search By Breed..." aria-label="Search">
+            </form>            
+          </div>
+        </div>
+      </header>
+
+    <% if(locals.data) {%>
+        <div class="center">
+            <h1>Discover Random Cats Information</h1>
+            <p>Explore random cat breeds and learn more about their unique characteristics.</p>
+        </div>
+    <div class="container">
+        <div class="image-card">
+            <% if (data.image) { %>
+                <img src="<%= data.image %>" alt="Cat Image">
+            <% } else { %>
+                <p>No image available</p>
+                <% } %>
+        </div>
+        <div>
+            <p>Name: <%= data.name %></p>
+            <p>Description: <%= data.description %></p>
+            <p>Temperament: <%= data.temperament %></p>
+            <p>Origin: <%= data.origin %></p>
+        </div>
+    </div>
+    <div class="center">
+        <button id="random-cat-button" type="button" class="btn btn-primary">Random</button>
+    </div>
+    <% } %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('random-cat-button').addEventListener('click', () => {
+            window.location.href = '/random';
+        });
+    </script>
+</body>
+</html>
